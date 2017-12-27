@@ -8,26 +8,29 @@
 
 namespace Tests\ReadCsvFileTest;
 
+use App\Helper\CheckCsvFile;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ReadCsvFileTest extends WebTestCase
 {
-    public function readCsvFileWhenExists()
+    public function testReadCsvFileWhenExists()
     {
 
     }
 
-    public function readCsvFileWhenNotExists()
+    public function testReadCsvFileWhenNotExists()
     {
 
     }
 
-    public function readCsvFileWhenEmpty()
+    public function testReadCsvFileWhenEmpty()
     {
+        $file = '';
+        $checkCsv = new CheckCsvFile();
 
     }
 
-    public function readCsvFileWhenWrongFormat()
+    public function testReadCsvFileWhenWrongFormat()
     {
 
     }
