@@ -1,0 +1,46 @@
+[
+    {
+        "name": "symfony/thanks",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/thanks.git",
+            "reference": "f3e567198cbac9dbec5baf9004f1e51fecc82c79"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/thanks/zipball/f3e567198cbac9dbec5baf9004f1e51fecc82c79",
+            "reference": "f3e567198cbac9dbec5baf9004f1e51fecc82c79",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.1",
+            "php": "^5.5.9|^7.0.8"
+        },
+        "time": "2017-12-20T21:36:05+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            },
+            "class": "Symfony\\Thanks\\Thanks"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Thanks\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            }
+        ]
+    }
+]
