@@ -7,6 +7,7 @@
  */
 
 namespace App\Service;
+use App\Helper\CheckCsvFile;
 
 /**
  * Class ReadCsvFile
@@ -14,14 +15,30 @@ namespace App\Service;
  */
 class ReadCsvFile extends AbstractReadFile implements ReadFile
 {
+
+    protected $pathFile;
+    protected $checkFile;
+
     /**
      * ReadCsvFile constructor.
      *
      * create instance of Symfony\Component\Finder\Finder
      */
-    public function __construct()
+    public function __construct($pathFile)
     {
-        parent::__construct();
+        $this->path = $pathFile;
+        $this->checkFile = new CheckCsvFile();
+    }
+
+    public function getFile($directory)
+    {
+        //Check if it's a CSV and if it's not empty
+        $this->checkFile->checkCsv($directory);
+
+        //return the file content
+        $file = parent::getFile($directory);
+        return $file;
+
     }
 
     /**
@@ -31,6 +48,9 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
      */
     public function getData() :array
     {
+        $file = $this->getFile($this->path);
+        $csvDatas = array_map('str_getcsv', $file);
 
+        return $csvDatas;
     }
 }

@@ -13,16 +13,10 @@ use Symfony\Component\Finder\Finder;
 
 abstract class AbstractReadFile
 {
-    private $finder;
 
-    public function __construct()
+    public function getFile($directory)
     {
-        $this->finder = new Finder();
-    }
-
-    public function getFile()
-    {
-        return $this->finder->files()->in(__DIR__);
+        return file($directory);
     }
 
 }

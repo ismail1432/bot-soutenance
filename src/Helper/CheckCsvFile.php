@@ -13,18 +13,25 @@ use App\Exception\NotCsvException;
 
 class CheckCsvFile
 {
-    public function checkIfIsCsv($file)
+    public function checkIfIsCsv($file) :void
     {
         $type = explode(".",$file);
-        if(strtolower(end($type)) == 'csv') {
-            throw new NotCsvException(sprintf("The %s is not a CSV file",$file));
+
+        if(strtolower(end($type)) != 'csv') {
+            throw new NotCsvException(sprintf("The %s is not a CSV file", $file));
         }
     }
 
-    public function checkIfIsEmty($file)
+    public function checkIfIsEmty($file) :void
     {
         if(empty($file)) {
-            throw new FileEmptyException(sprintf("The %s is empty",$file));
+            throw new FileEmptyException(sprintf("The %s is empty", $file));
         }
+    }
+
+    public function checkCsv($file) :void
+    {
+        $this->checkIfIsCsv($file);
+        $this->checkIfIsEmty($file);
     }
 }

@@ -8,30 +8,52 @@
 
 namespace Tests\ReadCsvFileTest;
 
+use App\Exception\FileEmptyException;
+use App\Exception\NotCsvException;
 use App\Helper\CheckCsvFile;
+use App\Service\ReadCsvFile;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ReadCsvFileTest extends WebTestCase
 {
-    public function testReadCsvFileWhenExists()
-    {
+    protected $checkCsvFile;
+    protected $readCsvFile;
 
+    protected function setUp()
+    {
+        $this->checkCsvFile = new CheckCsvFile();
     }
 
-    public function testReadCsvFileWhenNotExists()
+    public function testExceptionReadCsvFileWhenNotExists()
     {
+        $pdf = "niceDocument.pdf";
 
+        $this->expectException(NotCsvException::class);
+
+        $this->checkCsvFile->checkIfIsCsv($pdf);
     }
 
-    public function testReadCsvFileWhenEmpty()
+    public function testExceptionReadCsvFilsWhenIsEmpty()
     {
-        $file = '';
-        $checkCsv = new CheckCsvFile();
+        $file = file_get_contents(__DIR__ . '/testsfiledir/emptyFile.csv');
 
+        $this->expectException(FileEmptyException::class);
+
+        $this->checkCsvFile->checkIfIsEmty($file);
     }
 
-    public function testReadCsvFileWhenWrongFormat()
+    public function testReadCsvFileGetData()
     {
+        $pathFile = __DIR__.'/testsfiledir/goodFile.csv';
+        $this->readCsvFile = new ReadCsvFile($pathFile);
+        $expected = $this->readCsvFile->getData();
+        $datas =
+            [
+                ['contact@smaine.me','soutenance','02/02/2018','09:00','un long message'],
+                ['test@gmail.com','session','12/02/2018','10:00','session decouverte'],
+        ];
 
+        $this->assertEquals($expected, $datas);
     }
+
 }
