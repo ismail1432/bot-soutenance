@@ -17,13 +17,13 @@ class SendMail
         $this->mailer = $mailer;
     }
 
-    public function sendMail()
+    public function sendMail($subject, $content, $from, $destinataire)
     {
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('')
-            ->setTo('')
+        $message = (new \Swift_Message($subject))
+            ->setFrom($from)
+            ->setTo($destinataire)
             ->setBody(
-               "<h1>It works !<h1>",
+               $content,
                 'text/html'
             )
         ;

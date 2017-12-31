@@ -17,17 +17,38 @@ class Message
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $subject;
+
+    /**
+     * @return mixed
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param mixed $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
     }
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $content;
 
     /**
      * @return mixed

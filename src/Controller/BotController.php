@@ -10,7 +10,9 @@ namespace App\Controller;
 
 
 use App\Service\ReadCsvFile;
+use App\Tools\SendMail;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BotController extends Controller
@@ -20,8 +22,9 @@ class BotController extends Controller
      *
      * @Route("/create", name="create")
      */
-    public function contactStudentFromCsv(ReadCsvFile $readCsvFile)
+    public function contactStudentFromCsv(ReadCsvFile $readCsvFile, SendMail $mail)
     {
-        die(var_dump($readCsvFile->getFile()));
+        $mail->sendMail();
+        return new Response("<body><h1>Good </h1></h></body>");
     }
 }

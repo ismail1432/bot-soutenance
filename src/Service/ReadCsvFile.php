@@ -13,7 +13,7 @@ use App\Helper\CheckCsvFile;
  * Class ReadCsvFile
  * @package App\Service
  */
-class ReadCsvFile extends AbstractReadFile implements ReadFile
+class ReadCsvFile implements ReadFile
 {
 
     protected $pathFile;
@@ -31,14 +31,6 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
     }
 
     /**
-     * @return mixed
-     */
-    public function getPathFile()
-    {
-        return $this->pathFile;
-    }
-
-    /**
      * @param mixed $pathFile
      */
     public function setPathFile($pathFile)
@@ -46,7 +38,7 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
         $this->pathFile = $pathFile;
     }
 
-    public function getFile($file)
+    public function getPathFile()
     {
         if(!isset($file)){
             $file = $this->pathFile;
@@ -55,7 +47,7 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
         $this->checkFile->checkCsv($file);
 
         //return the file content
-        $file = parent::getFile($file);
+        $file = file($file);
         return $file;
 
     }
@@ -67,7 +59,7 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
      */
     public function getData() :array
     {
-        $file = $this->getFile($this->path);
+        $file = $this->getPathFile($this->pathFile);
         $csvDatas = array_map('str_getcsv', $file);
 
         return $csvDatas;

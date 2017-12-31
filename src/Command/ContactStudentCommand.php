@@ -8,6 +8,8 @@
 
 namespace App\Command;
 
+use App\Service\ReadCsvFile;
+use App\Tools\ContactStudent;
 use App\Tools\SendMail;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,12 +17,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ContactStudentCommand extends Command
 {
-    private $mail;
+    private $contactStudent;
 
-    public function __construct(SendMail $mail)
+    public function __construct(ContactStudent $contactStudent)
     {
         parent::__construct();
-        $this->mail = $mail;
+        $this->contactStudent = $contactStudent;
     }
 
     protected function configure()
@@ -40,7 +42,13 @@ class ContactStudentCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->mail->sendMail();
+
+        $pathFile = __DIR__.'/../../tests/testsfiledir/goodFile.csv';
+        $readFile = new ReadCsvFile();
+
+        $readFile->setPathFile($pathFile);
+        $this->contactStudent->contactStudent($readFile);
+
         $output->writeln('Whoa!');
     }
 }
