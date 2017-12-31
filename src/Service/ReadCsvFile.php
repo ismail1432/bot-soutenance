@@ -46,9 +46,11 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
         $this->pathFile = $pathFile;
     }
 
-    public function getFile()
+    public function getFile($file)
     {
-        $file = $this->pathFile;
+        if(!isset($file)){
+            $file = $this->pathFile;
+        }
         //Check if it's a CSV and if it's not empty
         $this->checkFile->checkCsv($file);
 
