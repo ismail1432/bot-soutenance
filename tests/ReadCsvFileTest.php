@@ -45,7 +45,8 @@ class ReadCsvFileTest extends WebTestCase
     public function testReadCsvFileGetData()
     {
         $pathFile = __DIR__.'/testsfiledir/goodFile.csv';
-        $this->readCsvFile = new ReadCsvFile($pathFile);
+        $this->readCsvFile = new ReadCsvFile();
+        $this->readCsvFile->setPathFile($pathFile);
         $expected = $this->readCsvFile->getData();
         $datas =
             [

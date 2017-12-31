@@ -17,6 +17,7 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
 {
 
     protected $pathFile;
+
     protected $checkFile;
 
     /**
@@ -24,19 +25,35 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
      *
      * create instance of Symfony\Component\Finder\Finder
      */
-    public function __construct($pathFile)
+    public function __construct()
     {
-        $this->path = $pathFile;
         $this->checkFile = new CheckCsvFile();
     }
 
-    public function getFile($directory)
+    /**
+     * @return mixed
+     */
+    public function getPathFile()
     {
+        return $this->pathFile;
+    }
+
+    /**
+     * @param mixed $pathFile
+     */
+    public function setPathFile($pathFile)
+    {
+        $this->pathFile = $pathFile;
+    }
+
+    public function getFile()
+    {
+        $file = $this->pathFile;
         //Check if it's a CSV and if it's not empty
-        $this->checkFile->checkCsv($directory);
+        $this->checkFile->checkCsv($file);
 
         //return the file content
-        $file = parent::getFile($directory);
+        $file = parent::getFile($file);
         return $file;
 
     }
@@ -53,4 +70,6 @@ class ReadCsvFile extends AbstractReadFile implements ReadFile
 
         return $csvDatas;
     }
+
+
 }

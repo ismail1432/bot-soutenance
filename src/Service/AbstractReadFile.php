@@ -14,9 +14,9 @@ use Symfony\Component\Finder\Finder;
 abstract class AbstractReadFile
 {
 
-    public function getFile($directory)
+    public function getFile($file)
     {
-        return file($directory);
+        return file($file);
     }
 
 }
