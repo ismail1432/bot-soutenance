@@ -9,6 +9,7 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\Message;
 use App\Entity\Session;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,22 +18,17 @@ class MessageFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $msgSoutenance = $this->getMessageSoutenance();
-        $sessionSoutenance = new Session();
-        $sessionSoutenance->setLinkCalendar("https://doodle.com/poll/qq7rzsyma2tzxm7q");
-        $sessionSoutenance->getMessage($msgSoutenance);
-        $sessionSoutenance->setSubject("soutenance");
+        $msgSoutenance = new Message();
+        $msgSoutenance->setContent($this->getMessageSoutenance());
+        $msgSoutenance->setSubject("soutenance");
 
-        $manager->persist($sessionSoutenance);
+        $manager->persist($msgSoutenance);
 
-        $msgFirstSession = $this->getMessageFirstSession();
-        $sessionSoutenance = new Session();
-        $sessionSoutenance->setLinkCalendar("https://doodle.com/poll/qq7rzsyma2tzxm7q");
-        $sessionSoutenance->getMessage($msgFirstSession);
-        $sessionSoutenance->setSubject("session decouverte");
+        $msgFirstSession = new Message();
+        $msgFirstSession->setContent($this->getMessageFirstSession());
+        $msgFirstSession->setSubject("session");
 
-        $manager->persist($sessionSoutenance);
-
+        $manager->persist($msgFirstSession);
         $manager->flush();
     }
 

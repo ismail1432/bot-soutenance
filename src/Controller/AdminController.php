@@ -9,7 +9,12 @@
 namespace App\Controller;
 
 
+use Symfony\Component\HttpFoundation\Request;
+
 class AdminController
 {
-
+    public function index(Request $request, \Twig_Environment $twig)
+    {
+        return $twig->render('admin/index.html.twig');
+    }
 }
