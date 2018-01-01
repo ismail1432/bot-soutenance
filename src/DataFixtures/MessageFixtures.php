@@ -38,7 +38,9 @@ class MessageFixtures extends Fixture
         <p>Dans le cadre de votre formation je vous contacte pour le passage de votre soutenance</p>
         <p>Si aucun créneau ne vous convient je vous laisse me communiquer vos préférences</p><p>Voici mes disponibiltés :</p>
         *AVAIBILITY*
-        <p>A bientôt ! *AUTHOR*, mentor OpenClassrooms.</p>";
+        <p>A bientôt ! *AUTHOR*,</p>
+         <p>Mentor @OpenClassrooms,<br>
+         Software developer @GreenFlex.</p>";
 
 
     }

@@ -19,7 +19,7 @@ class SendMail
 
     public function sendMail($subject, $content, $from, $destinataire)
     {
-        $message = (new \Swift_Message($subject))
+        $message = (new \Swift_Message(ucfirst($subject)))
             ->setFrom($from)
             ->setTo($destinataire)
             ->setBody(

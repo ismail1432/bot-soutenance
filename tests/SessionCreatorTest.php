@@ -9,7 +9,9 @@
 namespace Tests\ReadCsvFileTest;
 
 use App\Entity\Session;
+use App\Manager\MessageManager;
 use App\Tools\SessionCreator;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
@@ -17,7 +19,9 @@ class SessionCreatorTest  extends WebTestCase
 {
     public function setUp()
     {
-       $this->messageCreator = new SessionCreator();
+        $mockObjManager = $this->createMock(ObjectManager::class);
+        $mockMsgManager = new MessageManager($mockObjManager);
+        $this->messageCreator = new SessionCreator($mockMsgManager);
     }
 
     public function testCreateSessionMessage()

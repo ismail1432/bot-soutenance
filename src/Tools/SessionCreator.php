@@ -9,10 +9,19 @@
 namespace App\Tools;
 
 
+use App\Manager\MessageManager;
 use App\Service\ReadFile;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class SessionCreator
 {
+    protected $messageManager;
+
+    public function __construct(MessageManager $messageManager)
+    {
+        $this->messageManager = $messageManager;
+    }
+
     public function createSessionMessage($author, $avaibility, $message)
     {
         $message = str_replace('*AUTHOR*', $author, $message);
@@ -21,7 +30,14 @@ class SessionCreator
 
     public function getSoutenanceMessage()
     {
+        return $this->messageManager->findMessageSoutenance();
+    }
 
+    public function createSoutenanceSessionMessage($author, $avaibility)
+    {
+        $message = $this->getSoutenanceMessage();
+
+        return $this->createSessionMessage($author, $avaibility, $message->getContent());
     }
 
 }

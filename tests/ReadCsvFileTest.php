@@ -53,7 +53,6 @@ class ReadCsvFileTest extends WebTestCase
                 ['contact@smaine.me','soutenance','02/02/2018','09:00','un long message'],
                 ['test@gmail.com','session','12/02/2018','10:00','session decouverte'],
         ];
-
         $this->assertEquals($expected, $datas);
     }
 

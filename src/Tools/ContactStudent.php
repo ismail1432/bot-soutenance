@@ -9,6 +9,7 @@
 namespace App\Tools;
 
 
+use App\Manager\MessageManager;
 use App\Service\ReadFile;
 
 class ContactStudent
@@ -17,22 +18,25 @@ class ContactStudent
 
     protected $sessionCreator;
 
-    public function __construct(\Swift_Mailer $mailer)
+    public function __construct(\Swift_Mailer $mailer, SessionCreator $sessionCreator)
     {
-        $this->sessionCreator = new SessionCreator();
+        $this->sessionCreator = $sessionCreator;
         $this->sendMail = new SendMail($mailer);
     }
 
     public function contactStudent(ReadFile $file)
     {
+        //To Do Get data from .env
         $datas = $file->getData();
-        $from = "Smaïne";
+        $author = "";
+        $from = "";
+        $subject = "Soutenance";
+
         foreach ($datas as $item)
         {
             $destinataire = $item[0];
-            $subject = $item[1];
-            $avaibility = $item[2];
-            $content = $this->sessionCreator->createSessionMessgae($from,$avaibility,$message);
+            $avaibility = $datas[0][2];
+            $content = $this->sessionCreator->createSoutenanceSessionMessage($author, $avaibility);
             $this->sendMail->sendMail($subject, $content, $from, $destinataire);
         }
     }

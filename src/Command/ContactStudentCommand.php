@@ -43,7 +43,7 @@ class ContactStudentCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $pathFile = __DIR__.'/../../tests/testsfiledir/goodFile.csv';
+        $pathFile = __DIR__.'/../../tests/testsfiledir/soutenanceTest.csv';
         $readFile = new ReadCsvFile();
 
         $readFile->setPathFile($pathFile);

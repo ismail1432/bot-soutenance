@@ -10,7 +10,7 @@
 namespace App\Manager;
 
 use App\Entity\Message;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class MessageManager
 {
@@ -20,14 +20,16 @@ class MessageManager
      * MessageManager constructor.
      * @param $manager
      */
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(ObjectManager $manager)
     {
         $this->manager = $manager;
     }
 
     public function findMessageSoutenance()
     {
-        return $this->manager->getRepository(Message::class)->findOneBy(['subject'=>'soutenance']);
+        return $this->manager
+            ->getRepository(Message::class)
+            ->findOneBy(['subject'=>'soutenance']);
     }
 
 
