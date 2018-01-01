@@ -13,8 +13,15 @@ use App\Service\ReadFile;
 
 class SessionCreator
 {
-    public function createSession($date, $message)
+    public function createSessionMessage($author, $avaibility, $message)
     {
-        //TO do create the message
+        $message = str_replace('*AUTHOR*', $author, $message);
+        return str_replace( '*AVAIBILITY*', $avaibility, $message);
     }
+
+    public function getSoutenanceMessage()
+    {
+
+    }
+
 }

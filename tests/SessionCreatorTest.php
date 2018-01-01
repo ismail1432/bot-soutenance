@@ -20,8 +20,18 @@ class SessionCreatorTest  extends WebTestCase
        $this->messageCreator = new SessionCreator();
     }
 
-    public function testCreateMessage()
+    public function testCreateSessionMessage()
     {
-        //$this->assertInstanceOf(Session::class, $session);
+        $content = "Bonjour, <br><p>Je suis *AUTHOR*, je fais parti des mentors OpenClassrooms</p><br>
+        <p>Dans le cadre de votre formation je vous contacte pour le passage de votre soutenance</p>
+        <p>Si aucun créneau ne vous convient je vous laisse me communiquer vos préférences</p><p>Voici mes disponibiltés :</p>
+        *AVAIBILITY*
+        <p>A bientôt ! *AUTHOR*, mentor OpenClassrooms.</p>";
+
+        $author = "Smaïne";
+        $availbility = "https://doodle.com/poll/qq7rzsyma2tzxm7q";
+        $content = $this->messageCreator->createSessionMessage($author, $availbility, $content);
+        $this->assertContains($author,$content);
+        $this->assertContains($availbility,$content);
     }
 }

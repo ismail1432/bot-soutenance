@@ -26,12 +26,13 @@ class ContactStudent
     public function contactStudent(ReadFile $file)
     {
         $datas = $file->getData();
-        $from = "Smaine";
+        $from = "Smaïne";
         foreach ($datas as $item)
         {
             $destinataire = $item[0];
             $subject = $item[1];
-            $content = $this->sessionCreator->createSession($item[2],$item[3]);
+            $avaibility = $item[2];
+            $content = $this->sessionCreator->createSessionMessgae($from,$avaibility,$message);
             $this->sendMail->sendMail($subject, $content, $from, $destinataire);
         }
     }
