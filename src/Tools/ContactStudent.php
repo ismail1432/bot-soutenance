@@ -17,27 +17,29 @@ class ContactStudent
     protected $sendMail;
 
     protected $sessionCreator;
+    protected $author;
+    protected $mailFrom;
 
-    public function __construct(\Swift_Mailer $mailer, SessionCreator $sessionCreator)
+    public function __construct(\Swift_Mailer $mailer, SessionCreator $sessionCreator, $author, $mailFrom)
     {
         $this->sessionCreator = $sessionCreator;
         $this->sendMail = new SendMail($mailer);
+        $this->mailFrom = $mailFrom;
+        $this->author = $author;
     }
 
     public function contactStudent(ReadFile $file)
     {
         //To Do Get data from .env
         $datas = $file->getData();
-        $author = "";
-        $from = "";
         $subject = "Soutenance";
 
         foreach ($datas as $item)
         {
             $destinataire = $item[0];
             $avaibility = $datas[0][2];
-            $content = $this->sessionCreator->createSoutenanceSessionMessage($author, $avaibility);
-            $this->sendMail->sendMail($subject, $content, $from, $destinataire);
+            $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility);
+            $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
         }
     }
 }
