@@ -35,7 +35,7 @@ class SessionCreator
 
     public function createSoutenanceSessionMessage($author, $avaibility)
     {
-        $message = $this->getSoutenanceMessage();
+        $message = $this->getSoutenanceMessage($subject);
 
         return $this->createSessionMessage($author, $avaibility, $message->getContent());
     }

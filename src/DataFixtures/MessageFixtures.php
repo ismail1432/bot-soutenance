@@ -26,11 +26,11 @@ class MessageFixtures extends Fixture
 
         $msgFirstSession = new Message();
         $msgFirstSession->setContent($this->getMessageFirstSession());
-        $msgFirstSession->setSubject("first_session");
+        $msgFirstSession->setSubject("session découverte");
 
         $msgSession = new Message();
         $msgSession->setContent($this->getMessageFirstSession());
-        $msgSession->setSubject("session");
+        $msgSession->setSubject("session mentorat");
 
         $manager->persist($msgSession);
         $manager->flush();
