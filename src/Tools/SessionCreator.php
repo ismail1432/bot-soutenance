@@ -28,12 +28,12 @@ class SessionCreator
         return str_replace( '*AVAIBILITY*', $avaibility, $message);
     }
 
-    public function getSoutenanceMessage()
+    public function getSoutenanceMessage($subject)
     {
-        return $this->messageManager->findMessageSoutenance();
+        return $this->messageManager->findMessageSession($subject);
     }
 
-    public function createSoutenanceSessionMessage($author, $avaibility)
+    public function createSoutenanceSessionMessage($author, $avaibility,$subject)
     {
         $message = $this->getSoutenanceMessage($subject);
 

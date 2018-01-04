@@ -32,14 +32,15 @@ class ContactStudent
     {
         //To Do Get data from .env
         $datas = $file->getData();
-        $subject = "Soutenance";
 
         foreach ($datas as $item)
         {
             $destinataire = $item[0];
+            $subject = $datas[0][1];
             $avaibility = $datas[0][2];
-            $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility);
-            $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
+            $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
+            echo $content;
+            //$this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
         }
     }
 }

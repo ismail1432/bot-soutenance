@@ -10,7 +10,6 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Message;
-use App\Entity\Session;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -27,6 +26,7 @@ class MessageFixtures extends Fixture
         $msgFirstSession = new Message();
         $msgFirstSession->setContent($this->getMessageFirstSession());
         $msgFirstSession->setSubject("session découverte");
+        $manager->persist($msgFirstSession);
 
         $msgSession = new Message();
         $msgSession->setContent($this->getMessageFirstSession());

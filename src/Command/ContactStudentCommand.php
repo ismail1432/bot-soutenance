@@ -51,6 +51,8 @@ class ContactStudentCommand extends Command
         $readFile->setPathFile($pathFile);
         $this->contactStudent->contactStudent($readFile);
 
+        rename($file, '../'.$file);
+
         $output->writeln('Ok !');
     }
 }
