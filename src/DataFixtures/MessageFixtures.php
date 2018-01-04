@@ -26,9 +26,13 @@ class MessageFixtures extends Fixture
 
         $msgFirstSession = new Message();
         $msgFirstSession->setContent($this->getMessageFirstSession());
-        $msgFirstSession->setSubject("session");
+        $msgFirstSession->setSubject("first_session");
 
-        $manager->persist($msgFirstSession);
+        $msgSession = new Message();
+        $msgSession->setContent($this->getMessageFirstSession());
+        $msgSession->setSubject("session");
+
+        $manager->persist($msgSession);
         $manager->flush();
     }
 
@@ -44,6 +48,7 @@ class MessageFixtures extends Fixture
 
 
     }
+
     public function getMessageFirstSession()
     {
         return "<p>Bonjour, <br>Je suis  *AUTHOR*, je fais partie des mentors d’OpenClassrooms. Je te contacte pour fixer un premier rendez-vous en visioconférence avec toi afin de faire connaissance.</p>
@@ -51,6 +56,17 @@ class MessageFixtures extends Fixture
                 *AVAIBILITY*
                 <p>Je t’invite à me confirmer ta disponibilité 24h avant la date du rendez-vous pour que je puisse avoir le temps de prendre connaissance de ta réponse et m’organiser. Si aucune de ces dates ne te convient, je t’invite à me proposer une autre date.
                 Ce premier rendez-vous « découverte » nous permettra d’échanger et j’en profiterai aussi pour t’expliquer le fonctionnement du mentorat sur OpenClassrooms et répondre aux questions que tu te poses à ce sujet.</p>
+                <p>A bientôt ! *AUTHOR*, mentor OpenClassrooms.</p>";
+    }
+
+    public function getMessageSession()
+    {
+        return "<p>Bonjour, <br>Je suis  *AUTHOR*, je fais partie des mentors d’OpenClassrooms. Dans le cadre de ton parcours je te contacte pour fixer un rendez-vous.</p>
+                <p>Voici mes disponibilités, qu’est-ce que tu préfères : ?</p>
+                *AVAIBILITY*
+                <p>Je t’invite à me confirmer ta disponibilité 24h avant la date du rendez-vous pour que je puisse avoir le temps de prendre connaissance de ta réponse et m’organiser. 
+                Si aucune de ces dates ne te convient, je t’invite à me proposer une autre date.</p>
+                
                 <p>A bientôt ! *AUTHOR*, mentor OpenClassrooms.</p>";
     }
 }

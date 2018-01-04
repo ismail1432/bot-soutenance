@@ -32,5 +32,19 @@ class MessageManager
             ->findOneBy(['subject'=>'soutenance']);
     }
 
+    public function findMessageSession()
+    {
+        return $this->manager
+            ->getRepository(Message::class)
+            ->findOneBy(['subject'=>'session']);
+    }
+
+    public function findMessageFirstSession()
+    {
+        return $this->manager
+            ->getRepository(Message::class)
+            ->findOneBy(['subject'=>'session']);
+    }
+
 
 }

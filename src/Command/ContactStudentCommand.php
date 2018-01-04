@@ -11,6 +11,7 @@ namespace App\Command;
 use App\Service\ReadCsvFile;
 use App\Tools\ContactStudent;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -37,17 +38,19 @@ class ContactStudentCommand extends Command
             // the "--help" option
             ->setHelp('This command allows you to students from a file')
         ;
+        $this
+            ->addArgument('fileName', InputArgument::REQUIRED, 'Please give me the filename ');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
-        $pathFile = __DIR__.'/../../tests/testsfiledir/soutenanceTest.csv';
+        $file = $input->getArgument('fileName');
+        $pathFile = __DIR__.'/../../import/'.$file;
         $readFile = new ReadCsvFile();
 
         $readFile->setPathFile($pathFile);
         $this->contactStudent->contactStudent($readFile);
 
-        $output->writeln('Whoa!');
+        $output->writeln('Ok !');
     }
 }
