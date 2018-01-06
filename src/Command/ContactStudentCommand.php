@@ -51,6 +51,6 @@ class ContactStudentCommand extends Command
 
         rename($pathFile, $path.'/contacted/'.$file);
 
-        $output->writeln('Ok !');
+        $output->writeln('All students were contacted !');
     }
 }
