@@ -2,6 +2,13 @@
 
 #### This application allows you to contact many students for mentoring session, first session or exam session. Just create a csv file with students mails and run a command :-)
 
+### Requirements
+
+[Apache](https://httpd.apache.org/download.cgi)
+
+[PHP 7.1](http://php.net/downloads.php)
+
+[MySQL](https://www.mysql.com)
 ### Installation
 
 Clone [the project](https://github.com/ismail1432/bot-soutenance.git/)
