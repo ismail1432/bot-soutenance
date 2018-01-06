@@ -13,8 +13,18 @@ use App\Entity\Message;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * Class MessageFixtures
+ *
+ * Save 3 kinds of message in Database
+ *
+ * @package App\DataFixtures
+ */
 class MessageFixtures extends Fixture
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $msgSoutenance = new Message();
@@ -36,6 +46,9 @@ class MessageFixtures extends Fixture
         $manager->flush();
     }
 
+    /**
+     * @return string Soutenance message
+     */
     public function getMessageSoutenance()
     {
         return "Bonjour, <br><p>Je suis *AUTHOR*, je fais parti des mentors OpenClassrooms</p><br>
@@ -49,6 +62,9 @@ class MessageFixtures extends Fixture
 
     }
 
+    /**
+     * @return string First message session
+     */
     public function getMessageFirstSession()
     {
         return "<p>Bonjour, <br>Je suis  *AUTHOR*, je fais partie des mentors d’OpenClassrooms. Je te contacte pour fixer un premier rendez-vous en visioconférence avec toi afin de faire connaissance.</p>
@@ -61,6 +77,9 @@ class MessageFixtures extends Fixture
          Software developer @GreenFlex.</p>";
     }
 
+    /**
+     * @return string Session normal message
+     */
     public function getMessageSession()
     {
         return "<p>Bonjour, <br>Je suis  *AUTHOR*, je fais partie des mentors d’OpenClassrooms. Dans le cadre de ton parcours je te contacte pour fixer un rendez-vous.</p>

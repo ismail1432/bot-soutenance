@@ -9,17 +9,39 @@
 namespace App\Tools;
 
 
-use App\Manager\MessageManager;
 use App\Service\ReadFile;
 
+/**
+ * Class ContactStudent
+ * @package App\Tools
+ */
 class ContactStudent
 {
+    /**
+     * @var SendMail Object
+     */
     protected $sendMail;
 
+    /**
+     * @var SessionCreator
+     */
     protected $sessionCreator;
+    /**
+     * @var string MESSAGE_AUTHOR from .env
+     */
     protected $author;
+    /**
+     * @var string from .env MAIL_FROM from .env
+     */
     protected $mailFrom;
 
+    /**
+     * ContactStudent constructor.
+     * @param \Swift_Mailer $mailer
+     * @param SessionCreator $sessionCreator
+     * @param $author
+     * @param $mailFrom
+     */
     public function __construct(\Swift_Mailer $mailer, SessionCreator $sessionCreator, $author, $mailFrom)
     {
         $this->sessionCreator = $sessionCreator;
@@ -28,9 +50,14 @@ class ContactStudent
         $this->author = $author;
     }
 
-    public function contactStudent(ReadFile $file)
+    /**
+     * @param ReadFile $file
+     *
+     * Send mails to students
+     */
+    public function contactStudent(ReadFile $file) :void
     {
-        //To Do Get data from .env
+        //retrieve data from file
         $datas = $file->getData();
 
         foreach ($datas as $item)
@@ -38,7 +65,10 @@ class ContactStudent
             $destinataire = $item[0];
             $subject = $datas[0][1];
             $avaibility = $datas[0][2];
+
+            //create the content message
             $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
+            //send the mail
             $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
         }
     }

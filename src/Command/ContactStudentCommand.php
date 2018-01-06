@@ -15,8 +15,18 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class ContactStudentCommand
+ *
+ * Contact the students by mail
+ *
+ * @package App\Command
+ */
 class ContactStudentCommand extends Command
 {
+    /**
+     * @var ContactStudent
+     */
     private $contactStudent;
 
     public function __construct(ContactStudent $contactStudent)
@@ -25,7 +35,10 @@ class ContactStudentCommand extends Command
         $this->contactStudent = $contactStudent;
     }
 
-    protected function configure()
+    /**
+     * Configuration
+     */
+    protected function configure() :void
     {
         $this
             ->setName('contact:student')
@@ -38,6 +51,10 @@ class ContactStudentCommand extends Command
             ->addArgument('fileName', InputArgument::REQUIRED, 'Please give me the filename ');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $file = $input->getArgument('fileName');

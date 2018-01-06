@@ -1,6 +1,6 @@
-# bot-soutenance
+# Bot-Soutenance
 
-#### This application allows you to contact many students for mentoring session, first session or exam session
+#### This application allows you to contact many students for mentoring session, first session or exam session. Just create a csv file with students mails and run a command :-)
 
 ### Installation
 

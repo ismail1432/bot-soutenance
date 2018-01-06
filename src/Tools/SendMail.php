@@ -8,16 +8,33 @@
  */
 namespace App\Tools;
 
+/**
+ * Class SendMail
+ *
+ * Use Swiftmailer to send mail
+ *
+ * @package App\Tools
+ */
 class SendMail
 {
     protected $mailer;
 
+    /**
+     * SendMail constructor.
+     * @param \Swift_Mailer $mailer
+     */
     public function __construct(\Swift_Mailer $mailer)
     {
         $this->mailer = $mailer;
     }
 
-    public function sendMail($subject, $content, $from, $destinataire)
+    /**
+     * @param $subject
+     * @param $content
+     * @param $from
+     * @param $destinataire
+     */
+    public function sendMail($subject, $content, $from, $destinataire) :void
     {
         $message = (new \Swift_Message(ucfirst($subject)))
             ->setFrom($from)
