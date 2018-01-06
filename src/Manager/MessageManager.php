@@ -26,6 +26,10 @@ class MessageManager
     }
 
 
+    /**
+     * @param $subject
+     * @return null|object
+     */
     public function findMessageSession($subject)
     {
         return $this->manager

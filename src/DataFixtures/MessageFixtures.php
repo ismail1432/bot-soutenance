@@ -29,7 +29,7 @@ class MessageFixtures extends Fixture
         $manager->persist($msgFirstSession);
 
         $msgSession = new Message();
-        $msgSession->setContent($this->getMessageFirstSession());
+        $msgSession->setContent($this->getMessageSession());
         $msgSession->setSubject("session mentorat");
 
         $manager->persist($msgSession);
@@ -56,7 +56,9 @@ class MessageFixtures extends Fixture
                 *AVAIBILITY*
                 <p>Je t’invite à me confirmer ta disponibilité 24h avant la date du rendez-vous pour que je puisse avoir le temps de prendre connaissance de ta réponse et m’organiser. Si aucune de ces dates ne te convient, je t’invite à me proposer une autre date.
                 Ce premier rendez-vous « découverte » nous permettra d’échanger et j’en profiterai aussi pour t’expliquer le fonctionnement du mentorat sur OpenClassrooms et répondre aux questions que tu te poses à ce sujet.</p>
-                <p>A bientôt ! *AUTHOR*, mentor OpenClassrooms.</p>";
+                <p>A bientôt ! *AUTHOR*,</p>
+         <p>Mentor @OpenClassrooms,<br>
+         Software developer @GreenFlex.</p>";
     }
 
     public function getMessageSession()
@@ -67,6 +69,8 @@ class MessageFixtures extends Fixture
                 <p>Je t’invite à me confirmer ta disponibilité 24h avant la date du rendez-vous pour que je puisse avoir le temps de prendre connaissance de ta réponse et m’organiser. 
                 Si aucune de ces dates ne te convient, je t’invite à me proposer une autre date.</p>
                 
-                <p>A bientôt ! *AUTHOR*, mentor OpenClassrooms.</p>";
+                <p>A bientôt ! *AUTHOR*,</p>
+         <p>Mentor @OpenClassrooms,<br>
+         Software developer @GreenFlex.</p>";
     }
 }

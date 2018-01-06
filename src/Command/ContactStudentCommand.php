@@ -28,14 +28,10 @@ class ContactStudentCommand extends Command
     protected function configure()
     {
         $this
-            // the name of the command (the part after "bin/console")
-            ->setName('app:contact-student')
+            ->setName('contact:student')
 
-            // the short description shown while running "php bin/console list"
             ->setDescription('Send a email to students from file.')
 
-            // the full command description shown when running the command with
-            // the "--help" option
             ->setHelp('This command allows you to students from a file')
         ;
         $this
@@ -45,13 +41,15 @@ class ContactStudentCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $file = $input->getArgument('fileName');
-        $pathFile = __DIR__.'/../../import/'.$file;
+        $path =__DIR__.'/../../import/';
+
+        $pathFile = $path.'/'.$file;
         $readFile = new ReadCsvFile();
 
         $readFile->setPathFile($pathFile);
         $this->contactStudent->contactStudent($readFile);
 
-        rename($file, '../'.$file);
+        rename($pathFile, $path.'/contacted/'.$file);
 
         $output->writeln('Ok !');
     }

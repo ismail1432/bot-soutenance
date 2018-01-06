@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Service\ReadCsvFile;
+use App\Tools\ContactStudent;
 use App\Tools\SendMail;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,9 +23,16 @@ class BotController extends Controller
      *
      * @Route("/create", name="create")
      */
-    public function contactStudentFromCsv(ReadCsvFile $readCsvFile, SendMail $mail)
+    public function contactStudentFromCsv(ReadCsvFile $readCsvFile, SendMail $mail, ContactStudent $contactStudent)
     {
-        $mail->sendMail();
+        $path =__DIR__.'/../../import/';
+
+        $file = 'soutenance.csv';
+        $pathFile = $path.'/'.$file;
+        $readFile = new ReadCsvFile();
+
+        $readFile->setPathFile($pathFile);
+        $contactStudent->contactStudent($readFile);
         return new Response("<body><h1>Good </h1></h></body>");
     }
 }

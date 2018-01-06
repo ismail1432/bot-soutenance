@@ -39,8 +39,7 @@ class ContactStudent
             $subject = $datas[0][1];
             $avaibility = $datas[0][2];
             $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
-            echo $content;
-            //$this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
+            $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
         }
     }
 }
