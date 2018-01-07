@@ -59,7 +59,7 @@ class ContactStudent
     {
         //retrieve data from file
         $datas = $file->getData();
-
+var_dump($datas);die;
         foreach ($datas as $item)
         {
             $destinataire = $item[0];
@@ -68,8 +68,10 @@ class ContactStudent
 
             //create the content message
             $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
+
             //send the mail
-            $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
+           // $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
         }
+        die;
     }
 }

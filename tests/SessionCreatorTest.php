@@ -6,7 +6,7 @@
  * Time: 16:39
  */
 
-namespace Tests\ReadCsvFileTest;
+namespace Tests;
 
 use App\Entity\Session;
 use App\Manager\MessageManager;
@@ -38,4 +38,6 @@ class SessionCreatorTest  extends WebTestCase
         $this->assertContains($author,$content);
         $this->assertContains($availbility,$content);
     }
+
+
 }

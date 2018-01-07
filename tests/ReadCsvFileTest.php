@@ -6,7 +6,7 @@
  * Time: 08:41
  */
 
-namespace Tests\ReadCsvFileTest;
+namespace Tests;
 
 use App\Exception\FileEmptyException;
 use App\Exception\NotCsvException;
