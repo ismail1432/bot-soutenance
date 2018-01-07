@@ -63,8 +63,8 @@ class ContactStudent
         foreach ($datas as $item)
         {
             $destinataire = $item[0];
-            $subject = $datas[0][1];
-            $avaibility = $datas[0][2];
+            $subject = $item[1];
+            $avaibility = $item[2];
 
             //create the content message
             $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
