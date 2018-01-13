@@ -22,7 +22,7 @@ class CheckIsValidSession
         }
         foreach ($tabArgs as $item => $value) {
             if(empty($value)|| (!is_string($value))) {
-                throw new WrongArgumentException(sprintf("Invalid %s argument",$item));
+                throw new WrongArgumentException(sprintf("%s is an invalid %s argument",$value, $item));
             }
         }
     }

@@ -61,9 +61,8 @@ class ReadCsvFile implements ReadFile
     {
         $file = $this->getPathFile($this->pathFile);
         $csvDatas = array_map('str_getcsv', $file);
-        array_pop($csvDatas);
+
         return $csvDatas;
+
     }
-
-
 }
