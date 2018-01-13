@@ -70,7 +70,7 @@ class ContactStudentCommand extends Command
         $readFile->setPathFile($pathFile);
         $this->contactStudent->contactStudent($readFile);
 
-        rename($pathFile, PATH.'/contacted/'.$file);
+        rename($pathFile, self::PATH.'/contacted/'.$file);
 
         $output->writeln('All students were contacted !');
     }

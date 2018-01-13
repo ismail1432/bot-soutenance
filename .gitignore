@@ -4,6 +4,7 @@
 /public/bundles/
 /var/
 /vendor/
+/import/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

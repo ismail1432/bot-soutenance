@@ -59,7 +59,7 @@ class ContactStudent
     {
         //retrieve data from file
         $datas = $file->getData();
-var_dump($datas);die;
+
         foreach ($datas as $item)
         {
             $destinataire = $item[0];

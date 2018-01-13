@@ -25,7 +25,5 @@ class CheckIsValidSession
                 throw new WrongArgumentException(sprintf("Invalid %s argument",$item));
             }
         }
-
-
     }
 }
