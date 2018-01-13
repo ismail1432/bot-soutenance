@@ -63,7 +63,6 @@ class ReadCsvFile implements ReadFile
         $csvDatas = array_map('str_getcsv', $file);
 
         return $csvDatas;
+
     }
-
-
 }

@@ -55,21 +55,33 @@ class ContactStudent
      *
      * Send mails to students
      */
-    public function contactStudent(ReadFile $file) :void
+    public function contactStudent(ReadFile $file): void
     {
         //retrieve data from file
         $datas = $file->getData();
+        $subjectTmp = '';
+        $avaibilityTmp = '';
 
-        foreach ($datas as $item)
-        {
+        foreach ($datas as $item) {
+
             $destinataire = $item[0];
-            $subject = $item[1];
-            $avaibility = $item[2];
 
-            //create the content message
+            //Retrieve subject
+            $subject = !empty($item[1]) ? $item[1] : $subjectTmp;
+            $subjectTmp = $subject;
+
+            //Retrieve Link avaibility
+            $avaibility = !empty($item[2]) ? $item[2] : $avaibilityTmp;
+            $avaibilityTmp = $avaibility;
+
+            //Create body message
             $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
-            //send the mail
-            $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
+
+            echo $content;
+            //Send Mail
+           // $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
+
         }
     }
+
 }

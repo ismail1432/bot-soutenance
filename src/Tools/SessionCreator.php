@@ -9,9 +9,8 @@
 namespace App\Tools;
 
 
+use App\Exception\WrongArgumentException;
 use App\Manager\MessageManager;
-use App\Service\ReadFile;
-use Doctrine\Common\Persistence\ObjectManager;
 
 
 /**
@@ -61,6 +60,8 @@ class SessionCreator
      */
     public function createSoutenanceSessionMessage($author, $avaibility, $subject)
     {
+        //check if arguments are not empty and string
+        CheckIsValidSession::checkArguments($author, $avaibility, $subject);
         //Get the message from the object
         $message = $this->getSoutenanceMessage($subject);
 

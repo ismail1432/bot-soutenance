@@ -8,6 +8,7 @@
 
 namespace App\Command;
 
+use App\Helper\CustomFinder;
 use App\Service\ReadCsvFile;
 use App\Tools\ContactStudent;
 use Symfony\Component\Console\Command\Command;
@@ -29,10 +30,15 @@ class ContactStudentCommand extends Command
      */
     private $contactStudent;
 
-    public function __construct(ContactStudent $contactStudent)
+    private $customFinder;
+
+    private CONST PATH = __DIR__.'/../../import/';
+
+    public function __construct(ContactStudent $contactStudent, CustomFinder $customFinder)
     {
         parent::__construct();
         $this->contactStudent = $contactStudent;
+        $this->customFinder = $customFinder;
     }
 
     /**
@@ -47,8 +53,7 @@ class ContactStudentCommand extends Command
 
             ->setHelp('This command allows you to students from a file')
         ;
-        $this
-            ->addArgument('fileName', InputArgument::REQUIRED, 'Please give me the filename ');
+
     }
 
     /**
@@ -57,16 +62,15 @@ class ContactStudentCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $file = $input->getArgument('fileName');
-        $path =__DIR__.'/../../import/';
 
-        $pathFile = $path.'/'.$file;
+        $file =  $this->customFinder->findFile(self::PATH);
+        $pathFile = self::PATH.$file;
         $readFile = new ReadCsvFile();
 
         $readFile->setPathFile($pathFile);
         $this->contactStudent->contactStudent($readFile);
 
-        rename($pathFile, $path.'/contacted/'.$file);
+        //rename($pathFile, self::PATH.'/contacted/'.$file);
 
         $output->writeln('All students were contacted !');
     }
