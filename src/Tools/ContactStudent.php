@@ -77,9 +77,9 @@ class ContactStudent
             //Create body message
             $content = $this->sessionCreator->createSoutenanceSessionMessage($this->author, $avaibility, $subject);
 
-            echo $content;
+
             //Send Mail
-           // $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
+            $this->sendMail->sendMail($subject, $content, $this->mailFrom, $destinataire);
 
         }
     }

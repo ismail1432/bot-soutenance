@@ -9,6 +9,7 @@
 namespace App\Command;
 
 use App\Helper\CustomFinder;
+use App\Helper\MoveFile;
 use App\Service\ReadCsvFile;
 use App\Tools\ContactStudent;
 use Symfony\Component\Console\Command\Command;
@@ -32,13 +33,16 @@ class ContactStudentCommand extends Command
 
     private $customFinder;
 
+    private $moveFile;
+
     private CONST PATH = __DIR__.'/../../import/';
 
-    public function __construct(ContactStudent $contactStudent, CustomFinder $customFinder)
+    public function __construct(ContactStudent $contactStudent, CustomFinder $customFinder, MoveFile $moveFile)
     {
         parent::__construct();
         $this->contactStudent = $contactStudent;
         $this->customFinder = $customFinder;
+        $this->moveFile = $moveFile;
     }
 
     /**
@@ -66,11 +70,9 @@ class ContactStudentCommand extends Command
         $file =  $this->customFinder->findFile(self::PATH);
         $pathFile = self::PATH.$file;
         $readFile = new ReadCsvFile();
-
         $readFile->setPathFile($pathFile);
         $this->contactStudent->contactStudent($readFile);
-
-        //rename($pathFile, self::PATH.'/contacted/'.$file);
+        $this->moveFile->moveFile($pathFile, $file, self::PATH);
 
         $output->writeln('All students were contacted !');
     }

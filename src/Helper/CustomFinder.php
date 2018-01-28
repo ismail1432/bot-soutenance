@@ -9,6 +9,7 @@
 namespace App\Helper;
 
 
+use App\Exception\NoFileFoundException;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -26,7 +27,11 @@ class CustomFinder extends Finder
      */
     public function findFile($directory)
     {
-       $files = $this->files()->in($directory);
+       $files = $this->files()->in($directory)->exclude('contacted');
+
+        if(count($files) === 0 ) {
+            throw new NoFileFoundException(sprintf("No file found ! Please make sure that there almost one file in %s", $directory));
+        }
 
        foreach ($files as $file) {
             return $file->getRelativePathname();
