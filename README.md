@@ -82,8 +82,6 @@ contact the students
 ### Enhancements :
 
 Please note that it's the first release !
-* [Allow multiples differents session in the same file](https://github.com/ismail1432/bot-soutenance/issues/1)
-* [launch command without specify name file](https://github.com/ismail1432/bot-soutenance/issues/2)
 * [Create IHM for custom the message](https://github.com/ismail1432/bot-soutenance/issues/3)
 * [Logs Errors and success](https://github.com/ismail1432/bot-soutenance/issues/4)
 * More and more tests !
